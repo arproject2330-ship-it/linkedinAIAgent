@@ -1,0 +1,122 @@
+* { box-sizing: border-box; }
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  margin: 0;
+  background: #0f172a;
+  color: #e2e8f0;
+  min-height: 100vh;
+}
+.header {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #334155;
+}
+.header h1 { margin: 0; font-size: 1.5rem; }
+.tagline { margin: 0.25rem 0 0; font-size: 0.9rem; color: #94a3b8; }
+.container { max-width: 720px; margin: 0 auto; padding: 1.5rem; }
+.card {
+  background: #1e293b;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid #334155;
+}
+.card h2 { margin: 0 0 1rem; font-size: 1.1rem; }
+.card h3 { margin: 1rem 0 0.5rem; font-size: 0.95rem; color: #94a3b8; }
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #475569;
+  border-radius: 8px;
+  background: #0f172a;
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+.actions { display: flex; gap: 0.75rem; margin-top: 0.75rem; }
+.btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-primary { background: #3b82f6; color: #fff; }
+.btn-primary:hover:not(:disabled) { background: #2563eb; }
+.btn-secondary { background: #475569; color: #e2e8f0; }
+.btn-secondary:hover:not(:disabled) { background: #64748b; }
+.status { margin-top: 0.75rem; font-size: 0.85rem; color: #94a3b8; }
+.preview-box {
+  background: #0f172a;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #334155;
+}
+.preview-hook { font-weight: 600; margin: 0 0 0.5rem; }
+.preview-body { margin: 0.5rem 0; white-space: pre-wrap; }
+.preview-cta { margin: 0.5rem 0 0; font-style: italic; }
+.preview-hashtags { margin: 0.5rem 0 0; color: #64748b; font-size: 0.9rem; }
+.preview-image { margin-top: 1rem; }
+.preview-image-label { font-size: 0.85rem; color: #94a3b8; margin: 0 0 0.5rem; }
+.preview-image img { max-width: 100%; border-radius: 8px; max-height: 280px; object-fit: contain; display: block; }
+.preview-actions { margin-bottom: 0.75rem; }
+.preview-edit label { display: block; font-size: 0.85rem; margin-top: 0.5rem; }
+.preview-edit textarea, .preview-edit input[type="text"] {
+  width: 100%; padding: 0.5rem; margin-top: 0.25rem; border-radius: 6px;
+  background: #0f172a; color: #e2e8f0; border: 1px solid #475569; font-size: 0.9rem;
+}
+.publish-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.publish-row label { font-size: 0.9rem; }
+.publish-row select {
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  background: #0f172a;
+  color: #e2e8f0;
+  border: 1px solid #475569;
+  min-width: 180px;
+}
+.connect-accounts {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid #334155;
+}
+.connect-label { margin: 0 0 0.5rem; font-size: 0.9rem; color: #94a3b8; }
+.connect-buttons { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.connect-hint { margin-top: 0.75rem; font-size: 0.8rem; color: #64748b; line-height: 1.4; }
+.connect-hint a { color: #94a3b8; }
+.connect-hint code { font-size: 0.85em; background: #0f172a; padding: 0.1rem 0.3rem; border-radius: 4px; }
+.btn-outline {
+  background: transparent;
+  color: #94a3b8;
+  border: 1px solid #475569;
+}
+.btn-outline:hover { background: #334155; color: #e2e8f0; }
+.status.small { font-size: 0.8rem; margin-top: 0.5rem; }
+.analytics-placeholder, .list-placeholder { font-size: 0.9rem; color: #64748b; }
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+.analytics-item { background: #0f172a; padding: 0.75rem; border-radius: 8px; border: 1px solid #334155; }
+.analytics-item strong { display: block; font-size: 1.25rem; color: #3b82f6; }
+.draft-item, .history-item {
+  background: #0f172a;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  border: 1px solid #334155;
+  font-size: 0.9rem;
+}
+.draft-item .snippet { color: #94a3b8; margin-top: 0.25rem; }
+.draft-item .btn-use-draft { margin-top: 0.5rem; font-size: 0.85rem; }

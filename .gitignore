@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Env and secrets
+.env
+
+# Storage and local
+storage/
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo

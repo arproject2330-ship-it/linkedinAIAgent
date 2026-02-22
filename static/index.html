@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinkedIn AI Agent – ReeloomStudios</title>
+  <link rel="stylesheet" href="/static/dashboard.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>LinkedIn AI Agent</h1>
+    <p class="tagline">ReeloomStudios – Smart posts, one click</p>
+  </header>
+
+  <main class="container">
+    <section class="card generate-section">
+      <h2>Generate Post</h2>
+      <textarea id="userInput" placeholder="Optional: paste your idea or leave blank for AI to pick a topic" rows="3"></textarea>
+      <div class="actions">
+        <button id="btnGenerate" class="btn btn-primary">Generate Post</button>
+        <button id="btnRegenerate" class="btn btn-secondary" disabled>Regenerate</button>
+      </div>
+      <p id="generateStatus" class="status"></p>
+    </section>
+
+    <section class="card preview-section" id="previewSection" hidden>
+      <h2>Post ready for review</h2>
+      <div class="preview-actions">
+        <button type="button" id="btnEdit" class="btn btn-secondary">Edit</button>
+        <button type="button" id="btnSaveEdit" class="btn btn-primary" hidden>Save edits</button>
+        <button type="button" id="btnGenerateImage" class="btn btn-outline" hidden>Generate image (optional)</button>
+      </div>
+      <div class="preview-box" id="previewBoxReadonly">
+        <p class="preview-hook" id="previewHook"></p>
+        <p class="preview-body" id="previewBody"></p>
+        <p class="preview-cta" id="previewCta"></p>
+        <p class="preview-hashtags" id="previewHashtags"></p>
+      </div>
+      <div class="preview-box preview-edit" id="previewBoxEdit" hidden>
+        <label>Hook</label>
+        <textarea id="editHook" rows="2"></textarea>
+        <label>Body</label>
+        <textarea id="editBody" rows="6"></textarea>
+        <label>CTA</label>
+        <textarea id="editCta" rows="1"></textarea>
+        <label>Hashtags</label>
+        <input type="text" id="editHashtags" />
+      </div>
+      <div class="preview-image" id="previewImageWrap" hidden>
+        <p class="preview-image-label">Generated image (relevant to post)</p>
+        <img id="previewImage" alt="Generated for this post" />
+      </div>
+      <script>
+        document.getElementById('previewImage').onerror = function() {
+          var w = document.getElementById('previewImageWrap');
+          var f = document.getElementById('previewImageFallback');
+          if (w) w.hidden = true;
+          if (f) { f.hidden = false; f.textContent = 'Image not available (generation failed or file missing). You can still publish the text.'; }
+        };
+      </script>
+      <p id="previewImageFallback" class="status small" hidden>Optional: click &quot;Generate image&quot; to create an image for this post.</p>
+      <div class="publish-row">
+        <label>Publish to:</label>
+        <select id="accountSelect">
+          <option value="">— Select account —</option>
+        </select>
+        <button id="btnPublish" class="btn btn-primary" disabled>Publish</button>
+      </div>
+    <div class="connect-accounts">
+      <p class="connect-label">No account? Connect LinkedIn:</p>
+      <div class="connect-buttons">
+        <button type="button" id="btnConnectPersonal" class="btn btn-outline">Connect personal account</button>
+        <button type="button" id="btnConnectCompany" class="btn btn-outline">Connect company page</button>
+      </div>
+      <p id="connectStatus" class="status small"></p>
+      <p class="connect-hint">If you see &quot;Bummer, something went wrong&quot; or unauthorized_scope: add <strong>Sign In with LinkedIn</strong> and <strong>Share on LinkedIn</strong> under your app’s Products in the <a href="https://www.linkedin.com/developers/apps" target="_blank" rel="noopener">LinkedIn Developer Portal</a>. See <code>LINKEDIN_OAUTH_FIX.md</code> in the project for steps.</p>
+    </div>
+      <p id="publishStatus" class="status"></p>
+    </section>
+
+    <section class="card analytics-section">
+      <h2>Analytics</h2>
+      <div id="analyticsContent" class="analytics-placeholder">Load analytics…</div>
+    </section>
+
+    <section class="card history-section">
+      <h2>Drafts &amp; history</h2>
+      <div id="draftsContent" class="list-placeholder">Load drafts…</div>
+      <h3>Scheduled</h3>
+      <div id="scheduledContent" class="list-placeholder">Load scheduled…</div>
+      <h3>Published posts</h3>
+      <div id="historyContent" class="list-placeholder">Load history…</div>
+    </section>
+  </main>
+
+  <script src="/static/dashboard.js?v=2"></script>
+</body>
+</html>
