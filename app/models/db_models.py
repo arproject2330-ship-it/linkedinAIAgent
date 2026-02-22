@@ -1,12 +1,26 @@
 """SQLAlchemy models for PostgreSQL. Run migrations to create tables."""
 from datetime import datetime
 from typing import AsyncGenerator
+from urllib.parse import urlparse, urlencode, urlunparse, parse_qs
 
 from sqlalchemy import DateTime, Float, ForeignKey, Integer, String, Text, Boolean
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 from app.config import settings
+
+
+def _ensure_ssl_url(url: str) -> str:
+    """Ensure asyncpg URL has ssl=require for Supabase/cloud Postgres (required to avoid connection failures)."""
+    if not url or "+asyncpg" not in url:
+        return url
+    parsed = urlparse(url)
+    qs = parse_qs(parsed.query)
+    if "ssl" in qs:
+        return url
+    qs["ssl"] = ["require"]
+    new_query = urlencode(qs, doseq=True)
+    return urlunparse(parsed._replace(query=new_query))
 
 
 class Base(DeclarativeBase):
@@ -102,8 +116,9 @@ def init_db() -> async_sessionmaker[AsyncSession]:
             "Supabase Dashboard → Settings → Database → Connection string (URI); use postgresql+asyncpg://..."
         )
     _engine = create_async_engine(
-        settings.database_url,
+        _ensure_ssl_url(settings.database_url),
         echo=settings.log_level.upper() == "DEBUG",
+        pool_pre_ping=True,
     )
     _session_factory = async_sessionmaker(_engine, class_=AsyncSession, expire_on_commit=False)
     return _session_factory
